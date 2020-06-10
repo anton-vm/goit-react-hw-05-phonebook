@@ -5,6 +5,8 @@ import Filter from "./Components/Filter/Filter";
 import { v4 as uuidv4 } from "uuid";
 import storage from "./utils/storage";
 import { CSSTransition } from "react-transition-group";
+import {toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import "./App.css";
 
 class App extends Component {
@@ -38,6 +40,8 @@ class App extends Component {
     });
   };
 
+ 
+
   formSubmit = (e) => {
     e.preventDefault();
     const contact = {
@@ -49,7 +53,9 @@ class App extends Component {
       (el) => el.name === this.state.name
     );
     if (this.state.name === "" || this.state.number === "") {
-      alert("Fill the form");
+      toast.configure()
+      // alert("Fill the form");
+      toast.error("Fill the form")
       return;
     }
     if (isExist) {
